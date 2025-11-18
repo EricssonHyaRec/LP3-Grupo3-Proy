@@ -18,16 +18,13 @@
 
 ## 📌 Descripción del proyecto
 
-Este proyecto es una **aplicación web desarrollada en Laravel** orientada al **registro, seguimiento y visualización de hábitos diarios**.  
-El sistema permite que los usuarios puedan:
+Este proyecto es una aplicación web desarrollada en Laravel orientada al registro, seguimiento y visualización de hábitos diarios.  
 
 - Registrar hábitos como agua, sueño, alimentación, actividad física, etc.
-- Visualizar un **panel de estadísticas** (estático en esta versión).
-- Obtener puntos, rachas y progreso de hábitos.
+- Vista un panel de estadísticas (estático en esta versión).
+- Obtener puntos y progreso de hábitos.
 - Acceder a un perfil personalizado.
 - Autenticarse mediante Login y Logout con las vistas estilizadas.
-
-El objetivo principal es construir una herramienta sencilla y estética que motive al usuario a mejorar sus hábitos diarios.
 
 ---
 
@@ -46,11 +43,10 @@ El objetivo principal es construir una herramienta sencilla y estética que moti
 
 ## 🛠️ Tecnologías usadas
 
-- **Laravel 10+**
-- **PHP 8+**
+- **Laravel+**
+- **PHP**
 - **MySQL/MariaDB**
-- **Bootstrap 5**
-- **Chart.js**
+- **Bootstrap**
 - **Blade Templates**
 - **Composer**
 
