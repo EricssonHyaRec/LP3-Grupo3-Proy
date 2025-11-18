@@ -34,6 +34,8 @@ Route::get('/habitos/crear', function () {
     return view('habitos.create');
 })->middleware('auth')->name('habitos.create');
 
+
+
 //PUNTOS
 Route::get('/puntos', function () {
     return view('puntos.index');
@@ -42,6 +44,13 @@ Route::get('/puntos', function () {
 Route::get('/puntos/historial', function () {
     return view('puntos.historial');
 })->middleware('auth')->name('puntos.historial');
+
+
+
+//ESTADISTICAS
+Route::get('/estadisticas', function () {
+    return view('estadisticas');
+})->middleware('auth')->name('estadisticas');
 
 
 //ADMIN 
