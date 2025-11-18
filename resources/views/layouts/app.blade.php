@@ -12,6 +12,9 @@
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
@@ -36,18 +39,17 @@
     font-weight: 600;
     color: #ffffff !important;
     transition: 0.25s ease;
-    padding: 10px 18px;
-    margin-left: 18px;            /* ← MÁS SEPARACIÓN */
-    border-radius: 12px;          /* Borde más suave */
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 10px 12px;
+    margin-left: 18px;  
+    border-radius: 10px;      /* Para el hover */
+    border: none !important;  /* Elimina el cuadro */
 }
 
-/* Hover elegante */
+/* HOVER CON CUADRO SUAVE */
 .navbar-custom .nav-link:hover {
-    background: rgba(255, 255, 255, 0.25);
-    border-color: rgba(255, 255, 255, 0.5);
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.22);   /* Cuadro suave */
     color: #ffffff !important;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.35);
 }
 
 
@@ -66,27 +68,24 @@
     <div class="container">
 
         <!-- LOGO -->
-        <a class="navbar-brand fs-3 fw-bold text-white" href="{{ url('/inicio') }}" style="color: #ffffff !important;">
+        <a class="navbar-brand fs-3 fw-bold text-white" href="{{ url('/inicio') }}">
             Habits+
         </a>
 
-        <!-- BOTÓN MÓVIL -->
+        <!-- BOTÓN PARA MÓVIL -->
         <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarContent">
+                data-bs-target="#navbarContent">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- MENÚ CENTRADO -->
-        <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
+        <!-- MENÚ -->
+        <div class="collapse navbar-collapse" id="navbarContent">
 
-            <ul class="navbar-nav gap-3">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('habitos.index') }}">hábitos</a>
-                </li>
-
+            <!-- LINKS CENTRADOS -->
+            <ul class="navbar-nav mx-auto gap-3">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('habitos.create') }}">Registrar Hábito</a>
+                    <a class="nav-link" href="/habitos">Registrar Hábito</a>
                 </li>
 
                 <li class="nav-item">
@@ -94,26 +93,47 @@
                 </li>
 
                 <li class="nav-item">
-                     <a class="nav-link" href="{{ route('puntos.index') }}">puntos</a>
+                    <a class="nav-link" href="/puntos">Puntos</a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="/perfil">Perfil</a>
                 </li>
-               <li>
-    <button class="btn btn-danger w-100 text-start"
-        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-        {{ __('Logout') }}
-    </button>
 
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-        @csrf
-    </form>
-</li>
+                <!-- PUNTOS -->
+                <li class="nav-item d-flex align-items-center ms-3">
+                    <i class="bi bi-coin fs-4 text-warning me-1"></i>
+                    <span class="fw-bold">320</span>
+                </li>
             </ul>
-            
+
+            <!-- USUARIO (DERECHA) -->
+            <ul class="navbar-nav ms-auto">
+                @auth
+                    <li class="nav-item d-flex align-items-center">
+                        <!-- Usuario -->
+                        <span class="nav-link d-flex align-items-center">
+                            <i class="bi bi-person-circle fs-4 me-2"></i>
+                            {{ Auth::user()->name }}
+                        </span>
+                    </li>
+
+                    <!-- BOTÓN LOGOUT FUERA DEL DROPDOWN -->
+                    <li class="nav-item d-flex align-items-center ms-2">
+                        <a class="btn btn-light btn-sm fw-bold"
+                        href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="bi bi-box-arrow-right"></i>
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
+                @endauth
+            </ul>
 
         </div>
-
     </div>
 </nav>
 
