@@ -11,7 +11,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/cursos', [CursoController::class, 'index'])->middleware('auth')->name('cursos.index');
 
 Route::get('/perfil', function () {
     return view('perfil');
