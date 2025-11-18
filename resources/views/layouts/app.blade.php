@@ -80,9 +80,13 @@
         <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
 
             <ul class="navbar-nav gap-3">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('habitos.index') }}">hábitos</a>
+                </li>
+
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/habitos">Registrar Hábito</a>
+                    <a class="nav-link" href="{{ route('habitos.create') }}">Registrar Hábito</a>
                 </li>
 
                 <li class="nav-item">
@@ -90,7 +94,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/puntos">Puntos</a>
+                     <a class="nav-link" href="{{ route('puntos.index') }}">puntos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/perfil">Perfil</a>
