@@ -1,6 +1,6 @@
-# Sistema de Gestión de Hábitos – Proyecto Laravel
-
-### 👥 Integrantes del equipo
+# Sistema de Gestión de Hábitos – Proyecto Laravel -LP3
+## El sistema que estamos creando llamado Habits+ nace con el propósito de cambiar la vida de las personas de manera positiva, enfocandonos en los hábitos. 
+### Integrantes del equipo
 - **Dueñas Loyola Yhozira Milagros**  
 - **Huancaya Recines, Ericsson**  
 - **Salazar Tarazona, Jorge Luis**  
@@ -16,19 +16,19 @@
 
 ---
 
-## 📌 Descripción del proyecto
+## Descripción del proyecto
 
 Este proyecto es una aplicación web desarrollada en Laravel orientada al registro, seguimiento y visualización de hábitos diarios.  
 
-- Registrar hábitos como agua, sueño, alimentación, actividad física, etc.
-- Vista un panel de estadísticas (estático en esta versión).
+- Registrar hábitos como agua, sueño, alimentación, actividad física, Otros.
+- Vista un panel de estadísticas.
 - Obtener puntos y progreso de hábitos.
-- Acceder a un perfil personalizado.
+- Acceder a una lista de perfiles.
 - Autenticarse mediante Login y Logout con las vistas estilizadas.
 
 ---
 
-## 🎨 Características principales
+## Características principales
 
 - **Frontend diseñado con Bootstrap + estilos personalizados** (inspirados en colores suaves verdes).
 - **Sistema de autenticación de Laravel Breeze/UI** (según configuración actual).
@@ -41,7 +41,7 @@ Este proyecto es una aplicación web desarrollada en Laravel orientada al regist
 
 ---
 
-## 🛠️ Tecnologías usadas
+## Tecnologías
 
 - **Laravel+**
 - **PHP**
@@ -50,10 +50,3 @@ Este proyecto es una aplicación web desarrollada en Laravel orientada al regist
 - **Blade Templates**
 - **Composer**
 
----
-
-## 🚀 Instalación del proyecto
-
-1. Clona el repositorio  
-   ```bash
-   git clone https://github.com/tu-repositorio.git
