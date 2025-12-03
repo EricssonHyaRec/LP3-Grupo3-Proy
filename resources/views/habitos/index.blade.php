@@ -1,53 +1,114 @@
 @extends('layouts.app')
 
-@section('title', 'mis hábitos')
+@section('title', 'Mis hábitos')
 
 @section('content')
 <div class="card shadow-sm border-0">
     <div class="card-body">
 
         @if(session('mensaje'))
-            <div class="alert alert-success">
-                {{ session('mensaje') }}
-            </div>
+            <div class="alert alert-success">{{ session('mensaje') }}</div>
         @endif
 
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4 class="mb-0" style="color: #2a8c78;">mis hábitos</h4>
-            <a href="{{ route('habitos.create') }}" class="btn btn-success btn-sm">
-                + registrar nuevo hábito
-            </a>
-        </div>
+        <!-- BOTÓN NUEVO HÁBITO -->
+        <a href="{{ route('habitos.create') }}" class="btn custom-btn mt-2">
+            + registrar nuevo hábito
+        </a>
 
-        <table class="table table-hover align-middle">
-            <thead>
-                <tr>
-                    <th>nombre</th>
-                    <th>tipo</th>
-                    <th>polaridad</th>
-                    <th>unidad</th>
-                    <th>puntos por unidad</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($habitos as $habito)
-                    <tr>
-                        <td>{{ $habito->nombre }}</td>
-                        <td>{{ $habito->tipo }}</td>
-                        <td>{{ $habito->polaridad }}</td>
-                        <td>{{ $habito->unidad }}</td>
-                        <td>{{ $habito->puntos_por_unidad }}</td>
-                    </tr>
+        <div class="row mt-4">
+
+            <!-- ===========================================================
+                 COLUMNA IZQUIERDA — HÁBITOS POSITIVOS
+            ============================================================ -->
+            <div class="col-md-6 mb-4">
+
+                <!-- FILTROS -->
+                <div class="mb-3">
+                    <ul class="nav nav-pills filtro-tipos" style="font-size: 14px; font-weight: 600;">
+
+                        <!-- TODOS -->
+                        <li class="nav-item me-2 mb-1">
+                            <a href="{{ route('habitos.index') }}"
+                               class="nav-link custom-pill-sm {{ request('tipo') ? '' : 'active-custom' }}"
+                               style="background-color:#c2e8e3;">
+                                todos
+                            </a>
+                        </li>
+
+                        <!-- AGUA -->
+                        <li class="nav-item me-2 mb-1">
+                            <a href="{{ route('habitos.index', ['tipo' => 'agua']) }}"
+                               class="nav-link custom-pill-sm {{ request('tipo') == 'agua' ? 'active-custom' : '' }}"
+                               style="background-color:#5cd1c820; border-bottom:3px solid #5cd1c8;">
+                                agua
+                            </a>
+                        </li>
+
+                        <!-- SUEÑO -->
+                        <li class="nav-item me-2 mb-1">
+                            <a href="{{ route('habitos.index', ['tipo' => 'sueño']) }}"
+                               class="nav-link custom-pill-sm {{ request('tipo') == 'sueño' ? 'active-custom' : '' }}"
+                               style="background-color:#b5a9f520; border-bottom:3px solid #b5a9f5;">
+                                sueño
+                            </a>
+                        </li>
+
+                        <!-- ACTIVIDAD FÍSICA -->
+                        <li class="nav-item me-2 mb-1">
+                            <a href="{{ route('habitos.index', ['tipo' => 'actividad']) }}"
+                               class="nav-link custom-pill-sm {{ request('tipo') == 'actividad' ? 'active-custom' : '' }}"
+                               style="background-color:#7bd67120; border-bottom:3px solid #7bd671;">
+                                actividad física
+                            </a>
+                        </li>
+
+                        <!-- ALIMENTACIÓN -->
+                        <li class="nav-item me-2 mb-1">
+                            <a href="{{ route('habitos.index', ['tipo' => 'comida']) }}"
+                               class="nav-link custom-pill-sm {{ request('tipo') == 'comida' ? 'active-custom' : '' }}"
+                               style="background-color:#f7c57d20; border-bottom:3px solid #f7c57d;">
+                                alimentación
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <h4 class="titulo-bloque">Hábitos positivos</h4>
+
+                @forelse($positivos as $hab)
+                    <div class="habit-card {{ $hab->tipo }}">
+                        <div class="habit-nombre">{{ $hab->nombre }}</div>
+                        <div class="habit-detalle">
+                            +{{ $hab->puntos_por_unidad }} por {{ $hab->unidad }}
+                        </div>
+                    </div>
                 @empty
-                    <tr>
-                        <td colspan="5" class="text-center text-muted">
-                            aún no has registrado hábitos.
-                        </td>
-                    </tr>
+                    <p class="text-muted">No tienes hábitos positivos registrados.</p>
                 @endforelse
-            </tbody>
-        </table>
+            </div>
 
+            <!-- ===========================================================
+                 COLUMNA DERECHA — HÁBITOS NEGATIVOS
+            ============================================================ -->
+            <div class="col-md-6 mb-4">
+
+                <h4 class="titulo-bloque negativo">Hábitos negativos</h4>
+
+                @forelse($negativos as $hab)
+                    <div class="habit-card negativo {{ $hab->tipo }}">
+                        <div class="habit-nombre">{{ $hab->nombre }}</div>
+                        <div class="habit-detalle">
+                            -{{ $hab->puntos_por_unidad }} por {{ $hab->unidad }}
+                        </div>
+                    </div>
+                @empty
+                    <p class="text-muted">No tienes hábitos negativos registrados.</p>
+                @endforelse
+
+            </div>
+
+        </div>
     </div>
 </div>
 @endsection

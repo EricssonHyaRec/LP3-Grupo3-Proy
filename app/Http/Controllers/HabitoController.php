@@ -8,13 +8,26 @@ use Illuminate\Support\Facades\Auth;
 
 class HabitoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $usuario = Auth::user();
 
-        $habitos = Habito::where('user_id', $usuario->id)->get();
+        $tipo = $request->tipo;
 
-        return view('habitos.index', compact('habitos'));
+        // POSITIVOS
+        $positivos = Habito::where('user_id', $usuario->id)
+                            ->where('polaridad', 'positivo')
+                            ->when($tipo, function($q) use ($tipo) {
+                                return $q->where('tipo', $tipo);
+                            })
+                            ->get();
+
+        // NEGATIVOS (sin filtro)
+        $negativos = Habito::where('user_id', $usuario->id)
+                            ->where('polaridad', 'negativo')
+                            ->get();
+
+        return view('habitos.index', compact('positivos', 'negativos'));
     }
 
     public function create()
