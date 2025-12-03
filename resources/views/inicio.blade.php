@@ -14,7 +14,7 @@
 <div class="card mb-4 shadow-sm border-0">
     <div class="card-body text-center">
         <h3 class="fw-bold" style="color: #2a8c78;">{{ $points ?? 320 }} puntos</h3>
-        <p class="text-muted mb-0">Sigue avanzando, mi reina. Cada día cuenta</p>
+        <p class="text-muted mb-0">Sigue avanzando, mi yaaa. Cada día cuenta</p>
     </div>
 </div>
 
