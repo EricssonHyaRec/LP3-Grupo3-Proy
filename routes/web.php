@@ -20,6 +20,10 @@ Route::middleware('auth')->group(function () {
         return view('perfil');
     })->name('perfil');
 
+    Route::put('/perfil/update', [App\Http\Controllers\PerfilController::class, 'update'])
+     ->name('perfil.update');
+
+
     Route::get('/inicio', function () {
         return view('inicio');
     })->name('inicio');

@@ -264,59 +264,110 @@ body {
                             <strong>{{ Auth::user()->created_at->format('d M Y') }}</strong>
                         </p>
 
-                        <button class="btn btn-sm text-white mt-2 px-3" style="background:#2a8c78;">
+                        <button id="btnEditarPerfil" 
+                                class="btn btn-warning text-white mt-2 px-3"
+                                >
                             Editar Perfil
                         </button>
 
                     </div>
 
-                    <!-- DERECHA: RESUMEN + PUNTOS + HÁBITOS -->
+                    <!-- DERECHA (Misma proporción SIEMPRE) -->
                     <div class="col-md-8">
 
-                        <!-- RESUMEN SEMANAL (compacto) -->
-                        <h5 class="fw-semibold mb-2" style="color:#2a8c78;">Resumen semanal</h5>
+                        <!-- ===========================
+                             BLOQUE 1 : VISTA (DEFAULT)
+                        ============================ -->
+                        <div id="perfilView">
 
-                        <div class="row g-2">
+                            <h5 class="fw-semibold mb-2" style="color:#2a8c78;">Resumen semanal</h5>
 
-                            <div class="col-6 col-lg-3">
-                                <div class="summary-box p-2 rounded-3 text-center small">
-                                    <strong class="text-dark d-block">Agua</strong>
-                                    <span class="text-muted">14 L</span>
+                            <div class="row g-2">
+
+                                <div class="col-6 col-lg-3">
+                                    <div class="summary-box p-2 rounded-3 text-center small">
+                                        <strong class="text-dark d-block">Agua</strong>
+                                        <span class="text-muted">14 L</span>
+                                    </div>
                                 </div>
+
+                                <div class="col-6 col-lg-3">
+                                    <div class="summary-box p-2 rounded-3 text-center small">
+                                        <strong class="text-dark d-block">Sueño</strong>
+                                        <span class="text-muted">48 h</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-6 col-lg-3">
+                                    <div class="summary-box p-2 rounded-3 text-center small">
+                                        <strong class="text-dark d-block">Ejercicio</strong>
+                                        <span class="text-muted">4 h</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-6 col-lg-3">
+                                    <div class="summary-box p-2 rounded-3 text-center small">
+                                        <strong class="text-dark d-block">Comidas</strong>
+                                        <span class="text-muted">21</span>
+                                    </div>
+                                </div>
+
                             </div>
 
-                            <div class="col-6 col-lg-3">
-                                <div class="summary-box p-2 rounded-3 text-center small">
-                                    <strong class="text-dark d-block">Sueño</strong>
-                                    <span class="text-muted">48 h</span>
-                                </div>
-                            </div>
-
-                            <div class="col-6 col-lg-3">
-                                <div class="summary-box p-2 rounded-3 text-center small">
-                                    <strong class="text-dark d-block">Ejercicio</strong>
-                                    <span class="text-muted">4 h</span>
-                                </div>
-                            </div>
-
-                            <div class="col-6 col-lg-3">
-                                <div class="summary-box p-2 rounded-3 text-center small">
-                                    <strong class="text-dark d-block">Comidas</strong>
-                                    <span class="text-muted">21</span>
-                                </div>
+                            <div class="text-center my-3">
+                                <h3 class="fw-bold mb-0" style="color:#2a8c78;">
+                                    {{ $points ?? 320 }} pts
+                                </h3>
+                                <small class="text-muted">Tu constancia te acerca a tus metas 🌱</small>
                             </div>
 
                         </div>
 
-                        <!-- PUNTOS (compacto) -->
-                        <div class="text-center my-3">
-                            <h3 class="fw-bold mb-0" style="color:#2a8c78;">
-                                {{ $points ?? 320 }} pts
-                            </h3>
-                            <small class="text-muted">Tu constancia te acerca a tus metas 🌱</small>
+                        <!-- ===========================
+                             BLOQUE 2: FORMULARIO EDITAR
+                             (Oculto por defecto)
+                        ============================ -->
+                        <div id="perfilEdit" class="d-none">
+
+                            <form method="POST" action="{{ route('perfil.update') }}">
+                                @csrf
+                                @method('PUT')
+
+                                <div class="mb-3">
+                                    <label class="fw-semibold">Nombre</label>
+                                    <input type="text" name="name" class="form-control"
+                                           value="{{ Auth::user()->name }}" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="fw-semibold">Correo</label>
+                                    <input type="email" name="email" class="form-control"
+                                           value="{{ Auth::user()->email }}" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="fw-semibold">Nueva contraseña</label>
+                                    <input type="password" name="password" class="form-control">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="fw-semibold">Confirmar contraseña</label>
+                                    <input type="password" name="password_confirmation" class="form-control">
+                                </div>
+
+                                <button class="btn text-white px-4" style="background:#2a8c78;">
+                                    Guardar cambios
+                                </button>
+
+                                <button id="btnCancelarEdit" 
+                                        type="button" 
+                                        class="btn btn-secondary px-3 ms-2">
+                                    Cancelar
+                                </button>
+                            </form>
+
                         </div>
 
-                       
                     </div>
 
                 </div>
@@ -325,7 +376,7 @@ body {
 
             <!-- FOOTER -->
             <div class="modal-footer">
-                <button class="btn text-white px-4" style="background:#2a8c78;" data-bs-dismiss="modal">
+                <button class="btn  btn-secondary text-white px-4" data-bs-dismiss="modal">
                     Cerrar
                 </button>
             </div>
@@ -334,6 +385,18 @@ body {
     </div>
 </div>
 
+<!-- SCRIPT PARA CAMBIAR ENTRE VISTA Y EDICIÓN -->
+<script>
+document.getElementById('btnEditarPerfil').addEventListener('click', function () {
+    document.getElementById('perfilView').classList.add('d-none');
+    document.getElementById('perfilEdit').classList.remove('d-none');
+});
+
+document.getElementById('btnCancelarEdit').addEventListener('click', function () {
+    document.getElementById('perfilEdit').classList.add('d-none');
+    document.getElementById('perfilView').classList.remove('d-none');
+});
+</script>
 
 <body style="font-family: 'Poppins', sans-serif;">
 
@@ -394,9 +457,8 @@ body {
                         </span>
                     </li>
 
-                    <!-- BOTÓN LOGOUT FUERA DEL DROPDOWN -->
                     <li class="nav-item d-flex align-items-center ms-2">
-                        <a class="btn btn-light btn-sm fw-bold"
+                        <a class="btn btn-danger btn-sm fw-bold"
                         href="{{ route('logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="bi bi-box-arrow-right"></i>
