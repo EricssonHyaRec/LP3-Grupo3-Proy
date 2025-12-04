@@ -58,7 +58,9 @@
 
 <div class="card mb-4 shadow-sm border-0">
     <div class="card-body text-center">
-        <h3 class="fw-bold" style="color: #2a8c78;">{{ $points ?? 320 }} puntos</h3>
+        <h3 class="fw-bold" style="color: #2a8c78;">
+            {{ Auth::user()->puntos }} puntos
+        </h3>
         <p class="text-muted mb-0">Tu constancia te acerca a tus metas. 🌱</p>
     </div>
 </div>

@@ -51,4 +51,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Habito::class);
     }
+
+    public function sumar_puntos(int $cantidad): void
+    {
+        $this->puntos = $this->puntos + $cantidad;
+        $this->save();
+    }
+
+
 }

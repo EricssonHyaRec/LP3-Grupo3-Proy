@@ -33,10 +33,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/habitos/crear', [HabitoController::class, 'create'])->name('habitos.create');
     Route::post('/habitos', [HabitoController::class, 'store'])->name('habitos.store');
 
-    // puntos (de momento siguen estáticos en vista)
+    // puntos (de momento siguen estaticos en vista)
     Route::get('/puntos', function () {
-        return view('puntos.index');
+        $usuario = Auth::user();
+        $puntos = $usuario->puntos ?? 0;
+
+        return view('puntos.index', compact('puntos'));
     })->name('puntos.index');
+
 
     Route::get('/puntos/historial', function () {
         return view('puntos.historial');
@@ -51,4 +55,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/recomendaciones', function () {
         return view('recomendaciones');
     })->name('recomendaciones');
+
+    Route::get('/tienda', function () {
+        return view('tienda.tienda');
+    })->name('tienda');
 });

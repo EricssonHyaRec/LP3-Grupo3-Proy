@@ -254,7 +254,7 @@ body {
                     <div class="col-md-4 text-center mb-4">
 
                         <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-                             class="rounded-circle border border-3 mb-3"
+                             class="rounded-circle border-3 mb-3"
                              width="110" height="110" style="border-color:#2a8c78;">
 
                         <h3 class="fw-bold text-dark">{{ Auth::user()->name }}</h3>
@@ -316,7 +316,7 @@ body {
 
                             <div class="text-center my-3">
                                 <h3 class="fw-bold mb-0" style="color:#2a8c78;">
-                                    {{ $points ?? 320 }} pts
+                                    {{ Auth::user()->puntos }} pts
                                 </h3>
                                 <small class="text-muted">Tu constancia te acerca a tus metas 🌱</small>
                             </div>
@@ -430,7 +430,13 @@ document.getElementById('btnCancelarEdit').addEventListener('click', function ()
 
                 <li class="nav-item">
                     <a class="nav-link" href="/puntos">Puntos</a>
+            
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('tienda') }}">tienda</a>
+                </li>
+
 
                 <li class="nav-item">
                     <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modalPerfil">
@@ -442,7 +448,7 @@ document.getElementById('btnCancelarEdit').addEventListener('click', function ()
                 <!-- PUNTOS -->
                 <li class="nav-item d-flex align-items-center ms-3">
                     <i class="bi bi-coin fs-4 text-warning me-1"></i>
-                    <span class="fw-bold">320</span>
+                    <span class="fw-bold">{{ Auth::user()->puntos }}</span>
                 </li>
             </ul>
 

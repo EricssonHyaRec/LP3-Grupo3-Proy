@@ -67,6 +67,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'puntos' => 200, // todos los usuarios nuevos inician con 200 puntos
         ]);
     }
 }
