@@ -46,10 +46,10 @@ Route::middleware('auth')->group(function () {
         return view('puntos.historial');
     })->name('puntos.historial');
 
-    // estadísticas (vista estática por ahora)
-    Route::get('/estadisticas', function () {
-        return view('estadisticas');
-    })->name('estadisticas');
+    // estadísticas (vista estática por ahora) zahid
+    Route::get('/estadisticas', [HabitoController::class, 'estadisticas'])
+    ->name('habitos.estadisticas')
+    ->middleware('auth');
 
     // recomendaciones (vista estática por ahora)
     Route::get('/recomendaciones', function () {
