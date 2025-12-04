@@ -16,9 +16,6 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/perfil', function () {
-        return view('perfil');
-    })->name('perfil');
 
     Route::put('/perfil/update', [App\Http\Controllers\PerfilController::class, 'update'])
      ->name('perfil.update');
