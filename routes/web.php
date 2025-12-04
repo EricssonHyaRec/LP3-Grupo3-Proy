@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HabitoController;
+use App\Http\Controllers\PuntosController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -39,9 +40,8 @@ Route::middleware('auth')->group(function () {
     })->name('puntos.index');
 
 
-    Route::get('/puntos/historial', function () {
-        return view('puntos.historial');
-    })->name('puntos.historial');
+    Route::get('/puntos/historial', [PuntosController::class, 'index'])
+        ->name('puntos.historial');
 
     // estadísticas (vista estática por ahora) zahid
     Route::get('/estadisticas', [HabitoController::class, 'estadisticas'])
