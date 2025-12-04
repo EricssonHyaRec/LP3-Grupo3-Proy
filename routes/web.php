@@ -59,4 +59,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/tienda', function () {
         return view('tienda.tienda');
     })->name('tienda');
+    Route::post('/habitos/{habito}/completar', [HabitoController::class, 'completar'])
+    ->name('habitos.completar');
+
 });

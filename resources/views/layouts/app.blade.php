@@ -232,6 +232,40 @@ body {
     .modal-body {
         padding-top: 20px !important;
     }
+    .btn-completar-wrap {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+
+/* Botón estilo Habitica */
+.btn-completar {
+    background-color: #72d0c8;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    font-size: 13px;
+    border-radius: 20px;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 4px #00000020;
+}
+
+.btn-completar:hover {
+    background-color: #5bb9b1;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 7px #00000030;
+}
+
+.btn-completar:active {
+    transform: scale(0.97);
+}
+
+/* Check decorativo */
+.btn-completar .check-icon {
+    margin-right: 6px;
+    font-weight: bold;
+}
 </style>
 </head>
 <!-- MODAL PERFIL COMPACTO -->

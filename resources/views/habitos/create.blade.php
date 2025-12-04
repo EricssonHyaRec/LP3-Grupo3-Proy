@@ -71,6 +71,17 @@
                     placeholder="ej: 10">
             </div>
 
+            <!-- 🌿 NUEVO: FECHA LÍMITE -->
+            <div class="mb-3">
+                <label class="form-label">fecha límite</label>
+                <select name="fecha_opcion" class="form-select" required>
+                    <option value="">seleccionar...</option>
+                    <option value="hoy">hoy</option>
+                    <option value="semana">esta semana</option>
+                    <option value="mes">este mes</option>
+                </select>
+            </div>
+
             <button type="submit" class="btn btn-success">
                 guardar hábito
             </button>

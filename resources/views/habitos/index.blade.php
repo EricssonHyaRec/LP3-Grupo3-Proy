@@ -25,8 +25,6 @@
                 <!-- FILTROS -->
                 <div class="mb-3">
                     <ul class="nav nav-pills filtro-tipos" style="font-size: 14px; font-weight: 600;">
-
-                        <!-- TODOS -->
                         <li class="nav-item me-2 mb-1">
                             <a href="{{ route('habitos.index') }}"
                                class="nav-link custom-pill-sm {{ request('tipo') ? '' : 'active-custom' }}"
@@ -35,7 +33,6 @@
                             </a>
                         </li>
 
-                        <!-- AGUA -->
                         <li class="nav-item me-2 mb-1">
                             <a href="{{ route('habitos.index', ['tipo' => 'agua']) }}"
                                class="nav-link custom-pill-sm {{ request('tipo') == 'agua' ? 'active-custom' : '' }}"
@@ -44,7 +41,6 @@
                             </a>
                         </li>
 
-                        <!-- SUEÑO -->
                         <li class="nav-item me-2 mb-1">
                             <a href="{{ route('habitos.index', ['tipo' => 'sueño']) }}"
                                class="nav-link custom-pill-sm {{ request('tipo') == 'sueño' ? 'active-custom' : '' }}"
@@ -53,7 +49,6 @@
                             </a>
                         </li>
 
-                        <!-- ACTIVIDAD FÍSICA -->
                         <li class="nav-item me-2 mb-1">
                             <a href="{{ route('habitos.index', ['tipo' => 'actividad']) }}"
                                class="nav-link custom-pill-sm {{ request('tipo') == 'actividad' ? 'active-custom' : '' }}"
@@ -62,7 +57,6 @@
                             </a>
                         </li>
 
-                        <!-- ALIMENTACIÓN -->
                         <li class="nav-item me-2 mb-1">
                             <a href="{{ route('habitos.index', ['tipo' => 'comida']) }}"
                                class="nav-link custom-pill-sm {{ request('tipo') == 'comida' ? 'active-custom' : '' }}"
@@ -70,7 +64,6 @@
                                 alimentación
                             </a>
                         </li>
-
                     </ul>
                 </div>
 
@@ -78,10 +71,33 @@
 
                 @forelse($positivos as $hab)
                     <div class="habit-card {{ $hab->tipo }}">
+
                         <div class="habit-nombre">{{ $hab->nombre }}</div>
+
                         <div class="habit-detalle">
                             +{{ $hab->puntos_por_unidad }} por {{ $hab->unidad }}
                         </div>
+
+                        <!-- FECHA LÍMITE -->
+                        <div class="text-muted" style="font-size:13px;">
+                            Fecha límite: {{ $hab->fecha_limite }}
+                        </div>
+
+                        <!-- BOTÓN REALIZADO -->
+                        @if(!$hab->realizado)
+                            <div class="btn-completar-wrap">
+                                <form action="{{ route('habitos.completar', $hab->id) }}" method="POST">
+                                    @csrf
+                                    <button class="btn-completar">
+                                        <span class="check-icon">Realizado :)</span>
+                                        
+                                    </button>
+                                </form>
+                            </div>
+                        @endif
+
+
+
                     </div>
                 @empty
                     <p class="text-muted">No tienes hábitos positivos registrados.</p>
@@ -97,10 +113,30 @@
 
                 @forelse($negativos as $hab)
                     <div class="habit-card negativo {{ $hab->tipo }}">
+
                         <div class="habit-nombre">{{ $hab->nombre }}</div>
+
                         <div class="habit-detalle">
                             -{{ $hab->puntos_por_unidad }} por {{ $hab->unidad }}
                         </div>
+
+                        <div class="text-muted" style="font-size:13px;">
+                            Fecha límite: {{ $hab->fecha_limite }}
+                        </div>
+
+                        @if(!$hab->realizado)
+                            <div class="btn-completar-wrap">
+                                <form action="{{ route('habitos.completar', $hab->id) }}" method="POST">
+                                    @csrf
+                                    <button class="btn-completar">
+                                        <span class="check-icon">Realizado :(</span>
+                                        
+                                    </button>
+                                </form>
+                            </div>
+                        @endif
+
+
                     </div>
                 @empty
                     <p class="text-muted">No tienes hábitos negativos registrados.</p>

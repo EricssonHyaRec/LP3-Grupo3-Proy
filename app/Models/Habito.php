@@ -12,13 +12,16 @@ class Habito extends Model
     protected $table = 'habitos';
 
     protected $fillable = [
-        'user_id',
-        'nombre',
-        'tipo',
-        'polaridad',
-        'unidad',
-        'puntos_por_unidad',
+    'user_id',
+    'nombre',
+    'tipo',
+    'polaridad',
+    'unidad',
+    'puntos_por_unidad',
+    'fecha_limite',
+    'realizado'
     ];
+
 
     public function user()
     {
