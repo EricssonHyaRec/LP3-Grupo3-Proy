@@ -31,35 +31,37 @@ class HabitoController extends Controller
         return view('habitos.index', compact('positivos', 'negativos'));
     }
 
-    public function completar(Habito $habito)
-{
-    $usuario = Auth::user();
+   public function completar(Habito $habito)
+    {
+        $usuario = Auth::user();
 
-    if ($habito->realizado) {
-        return back()->with('mensaje', 'Este hábito ya fue completado.');
+        // Evitar doble completado
+        if ($habito->realizado) {
+            return back()->with('mensaje', 'Este hábito ya fue completado.');
+        }
+
+        // Marcar como realizado
+        $habito->realizado = true;
+        $habito->save();
+
+        // Asignar puntos fijos (+10 o -10)
+        $puntos = $habito->polaridad === 'positivo' ? 10 : -10;
+
+        // Aplicar puntos al usuario
+        $usuario->puntos += $puntos;
+        $usuario->save();
+
+        // Registrar historial
+        PuntosHistorial::create([
+            'user_id' => $usuario->id,
+            'accion' => "Hábito completado: " . $habito->nombre,
+            'cantidad' => $puntos,
+            'fecha' => now(),
+        ]);
+
+        return back()->with('mensaje', '¡Hábito completado con éxito!');
     }
 
-    // Marcar como realizado
-    $habito->realizado = true;
-    $habito->save();
-
-    // Calcular puntos según polaridad del hábito
-    $puntos = $habito->polaridad === 'positivo' ? +$habito->puntos_por_unidad : -$habito->puntos_por_unidad;
-
-    // Sumar/restar al usuario
-    $usuario->puntos += $puntos;
-    $usuario->save();
-
-    // 🔥 REGISTRAR EN HISTORIAL REAL
-    PuntosHistorial::create([
-        'user_id' => $usuario->id,
-        'accion' => "Hábito completado: " . $habito->nombre,
-        'cantidad' => $puntos,
-        'fecha' => now(),
-    ]);
-
-    return back()->with('mensaje', '¡Hábito completado con éxito!');
-}
 
 
     public function create()
