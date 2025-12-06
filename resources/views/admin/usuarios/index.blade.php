@@ -4,35 +4,40 @@
 
 @section('content')
 
-<h1 class="mb-4">Panel de Administración</h1>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="fw-bold">👑 Panel de Administración</h1>
+</div>
 
-<div class="card shadow-sm">
-    <div class="card-header bg-dark text-white">
+<div class="card shadow-lg border-0 rounded-4">
+    <div class="card-header bg-primary text-white rounded-top-4 d-flex align-items-center">
+        <i class="bi bi-people-fill fs-4 me-2"></i>
         <h5 class="mb-0">Lista de Usuarios</h5>
     </div>
 
     <div class="card-body">
 
-        <table class="table table-striped table-hover">
-            <thead class="table-dark">
+        <table class="table table-hover align-middle">
+            <thead class="table-primary">
                 <tr>
-                    <th>ID</th>
+                    <th class="text-center">ID</th>
                     <th>Nombre</th>
                     <th>Email</th>
-                    <th>Acciones</th>
+                    <th class="text-center">Acciones</th>
                 </tr>
             </thead>
+
             <tbody>
                 @foreach ($usuarios as $u)
                     <tr>
-                        <td>{{ $u['id'] }}</td>
+                        <td class="text-center fw-bold">{{ $u['id'] }}</td>
                         <td>{{ $u['name'] }}</td>
                         <td>{{ $u['email'] }}</td>
-                        <td>
-                            <button class="btn btn-danger btn-sm" disabled>
-                                Eliminar
+
+                        <td class="text-center">
+                            <button class="btn btn-outline-danger btn-sm" disabled>
+                                <i class="bi bi-trash-fill"></i> Eliminar
                             </button>
-                            <!-- Está deshabilitado porque todavía no funciona -->
+                            <!-- Aún deshabilitado -->
                         </td>
                     </tr>
                 @endforeach

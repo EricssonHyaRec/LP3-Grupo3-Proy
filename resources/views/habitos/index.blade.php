@@ -17,9 +17,7 @@
 
         <div class="row mt-4">
 
-            <!-- ===========================================================
-                 COLUMNA IZQUIERDA — HÁBITOS POSITIVOS
-            ============================================================ -->
+            <!--COLUMNA IZQUIERDA — HÁBITOS POSITIVOS-->
             <div class="col-md-6 mb-4">
 
                 <!-- FILTROS -->
@@ -104,9 +102,7 @@
                 @endforelse
             </div>
 
-            <!-- ===========================================================
-                 COLUMNA DERECHA — HÁBITOS NEGATIVOS
-            ============================================================ -->
+            <!-- COLUMNA DERECHA — HÁBITOS NEGATIVOS-->
             <div class="col-md-6 mb-4">
 
                 <h4 class="titulo-bloque negativo">Hábitos negativos</h4>

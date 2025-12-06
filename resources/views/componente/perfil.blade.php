@@ -10,17 +10,14 @@
                 <button type="button" class="btn-close btn-close-black" data-bs-dismiss="modal"></button>
             </div>
 
-            <!-- BODY -->
             <div class="modal-body">
                 <div class="row">
 
-                    <!-- FOTO + INFO GENERAL -->
                     <div class="col-md-4 text-center mb-4">
                         <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
                              class="rounded-circle border-3 mb-3"
                              width="110" height="110" style="border-color:#2a8c78;">
 
-                        <!-- VISTA NORMAL -->
                         <div id="perfilView">
                             <h3 class="fw-bold">{{ Auth::user()->name }}</h3>
                             <p class="text-muted small mb-1">
@@ -62,7 +59,6 @@
                         </div>
                     </div>
 
-                    <!-- ESTADÍSTICAS + RESUMEN -->
                     <div class="col-md-8">
                         <div class="row g-3">
 
@@ -99,7 +95,7 @@
                             </div>
                         </div>
 
-                        <!-- BARRA DE PROGRESO HACIA EL SIGUIENTE NIVEL -->
+                        <!-- progeso al siguiente nivel -->
                         <div class="mt-4">
                             <h6 class="fw-semibold mb-1">Progreso hacia siguiente nivel</h6>
                             @php
@@ -118,7 +114,6 @@
                 </div>
             </div>
 
-            <!-- FOOTER -->
             <div class="modal-footer">
                 <button class="btn btn-secondary text-white px-4" data-bs-dismiss="modal">Cerrar</button>
             </div>
@@ -127,7 +122,7 @@
     </div>
 </div>
 
-<!-- SCRIPT PARA EDITAR/CANCELAR -->
+<!-- script para editar perfil -->
 <script>
 document.getElementById('btnEditarPerfil').addEventListener('click', function () {
     document.getElementById('perfilView').classList.add('d-none');

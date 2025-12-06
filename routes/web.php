@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/habitos/crear', [HabitoController::class, 'create'])->name('habitos.create');
     Route::post('/habitos', [HabitoController::class, 'store'])->name('habitos.store');
 
-    // puntos (de momento siguen estaticos en vista)
+    // puntos con bd
     Route::get('/puntos', function () {
         $usuario = Auth::user();
         $puntos = $usuario->puntos ?? 0;
@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/puntos/historial', [PuntosController::class, 'index'])
         ->name('puntos.historial');
 
-    // estadísticas (vista estática por ahora) zahid
+    // estadísticas con bd zahid
     Route::get('/estadisticas', [HabitoController::class, 'estadisticas'])
     ->name('habitos.estadisticas')
     ->middleware('auth');
